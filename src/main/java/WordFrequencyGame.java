@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
@@ -35,12 +36,7 @@ public class WordFrequencyGame {
 
     private List<Input> countFrequencies(String[] words) {
         Map<String, List<String>> groupWords = groupSameWord(words);
-        List<Input> frequencies = new ArrayList<>();
-        for (Map.Entry<String, List<String>> entry : groupWords.entrySet()){
-            Input input = new Input(entry.getKey(), entry.getValue().size());
-            frequencies.add(input);
-        }
-        return frequencies;
+        return groupWords.keySet().stream().map(key -> new Input(key, groupWords.get(key).size())).collect(Collectors.toList());
     }
 
     private static Map<String, List<String>> groupSameWord(String[] words) {
