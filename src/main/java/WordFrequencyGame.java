@@ -8,8 +8,11 @@ import java.io.CharArrayWriter;
 import java.time.LocalDateTime;
 
 public class WordFrequencyGame {
+
+    public static final String ANY_SPACE_SEPARATOR = "\\s+";
+
     public String getResult(String inputStr){
-        if (inputStr.split("\\s+").length==1) {
+        if (inputStr.split(ANY_SPACE_SEPARATOR).length == 1) {
             return inputStr + " 1";
         } else {
             try {
