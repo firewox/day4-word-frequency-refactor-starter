@@ -1,2 +1,2 @@
-public record Input(String value, int count) {
+public record Input(String word, int totalCount) {
 }

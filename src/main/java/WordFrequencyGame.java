@@ -25,9 +25,9 @@ public class WordFrequencyGame {
 
     private String composeOutput(List<Input> wordFrequencies) {
         //split the input string with 1 to n pieces of spaces
-        wordFrequencies.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+        wordFrequencies.sort((w1, w2) -> w2.totalCount() - w1.totalCount());
         StringJoiner joiner = new StringJoiner("\n");
-        wordFrequencies.stream().map(word -> word.getValue() + " " + word.getWordCount()).forEach(joiner::add);
+        wordFrequencies.stream().map(word -> word.word() + " " + word.totalCount()).forEach(joiner::add);
         return joiner.toString();
     }
 
