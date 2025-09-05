@@ -23,4 +23,24 @@ class CountFizzBuzzTest {
         //Then
         assertEquals("FizzBuzz", word);
     }
+
+    @Test
+    void should_return_Fizz_when_input_3() {
+        //Given
+        int order = 3;
+        //When
+        String word = FizzBuzz.countOff(order);
+        //Then
+        assertEquals("Fizz", word);
+    }
+
+    @Test
+    void should_return_Buzz_when_input_5() {
+        //Given
+        int order = 5;
+        //When
+        String word = FizzBuzz.countOff(order);
+        //Then
+        assertEquals("Buzz", word);
+    }
 }
