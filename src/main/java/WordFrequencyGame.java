@@ -25,22 +25,14 @@ public class WordFrequencyGame {
 
     private String composeOutput(List<Input> wordFrequencies) {
         //split the input string with 1 to n pieces of spaces
-        wordFrequencies.sort((w1, w2) -> w2.totalCount() - w1.totalCount());
         StringJoiner joiner = new StringJoiner("\n");
-        wordFrequencies.stream().map(word -> word.word() + " " + word.totalCount()).forEach(joiner::add);
+        wordFrequencies.stream().sorted((w1, w2) -> w2.totalCount() - w1.totalCount()).map(word -> word.word() + " " + word.totalCount()).forEach(joiner::add);
         return joiner.toString();
     }
 
     private List<Input> countFrequencies(String[] words) {
-        Map<String, List<String>> groupWords = groupSameWord(words);
+        Map<String, List<String>> groupWords = new ArrayList<>(List.of(words)).stream().collect(Collectors.groupingBy(word -> word));
         return groupWords.keySet().stream().map(key -> new Input(key, groupWords.get(key).size())).collect(Collectors.toList());
     }
 
-    private static Map<String, List<String>> groupSameWord(String[] words) {
-        List<String> inputList = new ArrayList<>(List.of(words));
-        //get the map for the next step of sizing the same word
-        Map<String, List<String>> groupWords = new HashMap<>();
-        inputList.forEach(word -> groupWords.computeIfAbsent(word, k -> new ArrayList<>()).add(word));
-        return groupWords;
-    }
 }
